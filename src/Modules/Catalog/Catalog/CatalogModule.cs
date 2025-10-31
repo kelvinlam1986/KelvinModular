@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Builder;
 
 namespace Catalog
 {
@@ -9,6 +10,11 @@ namespace Catalog
             IConfiguration configuration)
         {
             return service;
+        }
+
+        public static IApplicationBuilder UseCatalogModule(this IApplicationBuilder app)
+        {
+            return app;
         }
     }
 }
