@@ -1,18 +1,35 @@
-﻿using MediatR;
+﻿using Catalog.Products.Dtos;
+using MediatR;
+using Shared.CQRS;
 
 namespace Catalog.Products.Features.CreateProduct
 {
-    public record CreateProductCommand(string Name, List<string> Category, string Description, string ImageFile, decimal Price)
-        :IRequest<CreateProductResult>;
+    public record CreateProductCommand(ProductDto Product)
+        :ICommand<CreateProductResult>;
 
     public record CreateProductResult(Guid Id);
 
-    internal class CreateProductHandler : IRequestHandler<CreateProductCommand, CreateProductResult>
+    internal class CreateProductHandler(CatalogDbContext dbContext) : ICommandHandler<CreateProductCommand, CreateProductResult>
     {
-        public Task<CreateProductResult> Handle(CreateProductCommand request, CancellationToken cancellationToken)
+        public async Task<CreateProductResult> Handle(CreateProductCommand command, CancellationToken cancellationToken)
         {
-            // Bussiness create product logic 
-            throw new NotImplementedException();
+            var product = CreateNewProduct(command.Product);
+            dbContext.Products.Add(product);
+            await dbContext.SaveChangesAsync();
+
+            return new CreateProductResult(product.Id);
+        }
+
+        private Product CreateNewProduct(ProductDto productDto)
+        {
+            var product = Product.Create(
+                Guid.NewGuid(),
+                productDto.Name,
+                productDto.Category,
+                productDto.Description,
+                productDto.ImageFile,
+                productDto.Price);
+            return product;
         }
     }
 }
