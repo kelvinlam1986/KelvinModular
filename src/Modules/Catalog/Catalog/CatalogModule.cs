@@ -5,6 +5,7 @@ using Shared.Data;
 using Shared.Data.Seed;
 using Catalog.Data.Seed;
 using Shared.Data.Interceptors;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 
 namespace Catalog
@@ -18,12 +19,18 @@ namespace Catalog
             // Api Endpoint services
 
             // Application use case services
+            service.AddMediatR(config =>
+            {
+                config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
+            });
 
             // Data - Infrastructure services
             var connectionString = configuration.GetConnectionString("Database");
-            service.AddDbContext<CatalogDbContext>(options =>
+            service.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
+            service.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptor>();
+            service.AddDbContext<CatalogDbContext>((sp, options) =>
                 {
-                    options.AddInterceptors(new AuditableEntityInterceptor());
+                    options.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>());
                     options.UseNpgsql(connectionString);
                 }
             );
