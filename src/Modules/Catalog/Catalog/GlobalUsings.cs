@@ -8,6 +8,7 @@ global using System.Reflection;
 global using Mapster;
 global using MediatR;
 global using Carter;
+global using FluentValidation; 
 
 global using Shared.DDD;
 global using Shared.CQRS;
