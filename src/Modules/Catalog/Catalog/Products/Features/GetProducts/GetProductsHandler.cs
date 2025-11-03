@@ -1,8 +1,4 @@
-﻿using Catalog.Products.Dtos;
-
-using Shared.CQRS;
-
-namespace Catalog.Products.Features.GetProducts
+﻿namespace Catalog.Products.Features.GetProducts
 {
     public record GetProductsQuery()
         : IQuery<GetProductsResult>;
@@ -18,18 +14,8 @@ namespace Catalog.Products.Features.GetProducts
                 .OrderBy(x => x.Name)
                 .ToListAsync(cancellationToken);
 
-            var productDtos = ProjectToProductDto(products);
+            var productDtos = products.Adapt<List<ProductDto>>();
             return new GetProductsResult(productDtos);
-        }
-
-        private List<ProductDto> ProjectToProductDto(List<Product> products)
-        {
-            foreach (var product in products)
-            {
-
-            }
-
-            return [];
         }
     }
 }

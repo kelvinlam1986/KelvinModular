@@ -1,8 +1,4 @@
-﻿using Catalog.Products.Dtos;
-using MediatR;
-using Shared.CQRS;
-
-namespace Catalog.Products.Features.CreateProduct
+﻿namespace Catalog.Products.Features.CreateProduct
 {
     public record CreateProductCommand(ProductDto Product)
         :ICommand<CreateProductResult>;
