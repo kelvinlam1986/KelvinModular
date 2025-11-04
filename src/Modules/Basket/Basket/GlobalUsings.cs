@@ -6,6 +6,7 @@ global using Microsoft.EntityFrameworkCore.Diagnostics;
 global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.DependencyInjection;
 global using FluentValidation;
+global using Mapster;
 global using Basket.Data;
 global using Basket.Basket.Models;
 global using Basket.Basket.Dtos;
