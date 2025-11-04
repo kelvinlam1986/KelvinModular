@@ -1,4 +1,6 @@
-﻿namespace Catalog.Products.Features.DeleteProduct
+﻿using Shared.Exceptions;
+
+namespace Catalog.Products.Features.DeleteProduct
 {
     public record DeleteProductCommand(Guid Id)
         : ICommand<DeleteProductResult>;
@@ -20,7 +22,7 @@
             var product = await dbContext.Products.FindAsync([command.Id], cancellationToken: cancellationToken);
             if (product is null)
             {
-                throw new Exception($"Product not found: {command.Id}");
+                throw new ProductNotFoundException(command.Id);
             }
 
             dbContext.Products.Remove(product);

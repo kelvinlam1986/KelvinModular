@@ -22,8 +22,6 @@
     {
         public async Task<CreateProductResult> Handle(CreateProductCommand command, CancellationToken cancellationToken)
         {
-            logger.LogInformation("CreateProductHandler. Handle called with {@Command}", command);
-
             var product = CreateNewProduct(command.Product);
             dbContext.Products.Add(product);
             await dbContext.SaveChangesAsync();
