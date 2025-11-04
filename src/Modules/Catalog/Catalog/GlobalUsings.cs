@@ -12,6 +12,7 @@ global using FluentValidation;
 
 global using Shared.DDD;
 global using Shared.CQRS;
+global using Shared.Pagination;
 global using Catalog.Products.Models;
 global using Catalog.Products.Events;
 global using Catalog.Data;
