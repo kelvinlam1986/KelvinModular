@@ -6,3 +6,4 @@ global using Shared.Extensions;
 
 
 global using Carter;
+global using Serilog;
