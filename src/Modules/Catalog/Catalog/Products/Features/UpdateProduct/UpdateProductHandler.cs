@@ -1,4 +1,6 @@
-﻿namespace Catalog.Products.Features.UpdateProduct
+﻿
+
+namespace Catalog.Products.Features.UpdateProduct
 {
     public record UpdateProductCommand(ProductDto Product)
         : ICommand<UpdateProductResult>;
@@ -22,7 +24,7 @@
             var product = await dbContext.Products.FindAsync([command.Product.Id], cancellationToken: cancellationToken);
             if (product is null)
             {
-                throw new Exception($"Product not found: {command.Product.Id}");
+                throw new ProductNotFoundException(command.Product.Id);
             }
 
             UpdateProductWithNewValue(product, command.Product);
