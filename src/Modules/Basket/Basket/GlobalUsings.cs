@@ -9,6 +9,7 @@ global using FluentValidation;
 global using Basket.Data;
 global using Basket.Basket.Models;
 global using Basket.Basket.Dtos;
+global using Basket.Basket.Exceptions;
 global using Shared.DDD;
 global using Shared.CQRS;
 global using Shared.Data.Interceptors;
