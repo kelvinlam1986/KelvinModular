@@ -16,10 +16,14 @@
         }
     }
 
-    internal class CreateProductHandler(CatalogDbContext dbContext) : ICommandHandler<CreateProductCommand, CreateProductResult>
+    internal class CreateProductHandler(
+        CatalogDbContext dbContext,
+        ILogger<CreateProductHandler> logger) : ICommandHandler<CreateProductCommand, CreateProductResult>
     {
         public async Task<CreateProductResult> Handle(CreateProductCommand command, CancellationToken cancellationToken)
         {
+            logger.LogInformation("CreateProductHandler. Handle called with {@Command}", command);
+
             var product = CreateNewProduct(command.Product);
             dbContext.Products.Add(product);
             await dbContext.SaveChangesAsync();

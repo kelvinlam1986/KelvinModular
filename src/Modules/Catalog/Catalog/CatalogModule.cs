@@ -6,6 +6,7 @@ using Shared.Data.Seed;
 using Catalog.Data.Seed;
 using Shared.Data.Interceptors;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+using Shared.Behaviors;
 
 
 namespace Catalog
@@ -22,7 +23,10 @@ namespace Catalog
             service.AddMediatR(config =>
             {
                 config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
+                config.AddOpenBehavior(typeof(ValidationBehavior<,>));
             });
+
+            service.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
             // Data - Infrastructure services
             var connectionString = configuration.GetConnectionString("Database");
