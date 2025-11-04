@@ -54,8 +54,6 @@ namespace Catalog
             // Use Data - Infrastructure service
             app.UseMigration<CatalogDbContext>();
 
-
-
             return app;
         }
 
