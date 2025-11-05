@@ -5,8 +5,12 @@ global using Microsoft.AspNetCore.Builder;
 global using Microsoft.EntityFrameworkCore.Diagnostics;
 global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.AspNetCore.Routing;
+global using Microsoft.AspNetCore.Http;
 global using FluentValidation;
 global using Mapster;
+global using Carter;
+global using MediatR;
 global using Basket.Data;
 global using Basket.Basket.Models;
 global using Basket.Basket.Dtos;
@@ -14,6 +18,15 @@ global using Basket.Basket.Exceptions;
 global using Shared.DDD;
 global using Shared.CQRS;
 global using Shared.Data.Interceptors;
+
+
+
+
+
+
+
+
+
 
 
 
