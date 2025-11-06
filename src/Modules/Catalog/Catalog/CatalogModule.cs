@@ -1,12 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
-using Microsoft.AspNetCore.Builder;
 using Shared.Data;
 using Shared.Data.Seed;
 using Catalog.Data.Seed;
 using Shared.Data.Interceptors;
 using Microsoft.EntityFrameworkCore.Diagnostics;
-using Shared.Behaviors;
 
 
 namespace Catalog
@@ -20,14 +18,6 @@ namespace Catalog
             // Api Endpoint services
 
             // Application use case services
-            service.AddMediatR(config =>
-            {
-                config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
-                config.AddOpenBehavior(typeof(ValidationBehavior<,>));
-                config.AddOpenBehavior(typeof(LoggingBehavior<,>));
-            });
-
-            service.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
             // Data - Infrastructure services
             var connectionString = configuration.GetConnectionString("Database");
