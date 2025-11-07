@@ -1,4 +1,6 @@
-﻿namespace Basket.Basket.Features.DeleteBasket
+﻿using Basket.Data.Repository;
+
+namespace Basket.Basket.Features.DeleteBasket
 {
     public record DeleteBasketCommand(string UserName)
         : ICommand<DeleteBasketResult>;
@@ -13,20 +15,12 @@
         }
     }
 
-    internal class DeleteBasketHandler(BasketDbContext dbContext)
+    internal class DeleteBasketHandler(IBasketRepository basketRepository)
         : ICommandHandler<DeleteBasketCommand, DeleteBasketResult>
     {
         public async Task<DeleteBasketResult> Handle(DeleteBasketCommand command, CancellationToken cancellationToken)
         {
-            var basket = await dbContext.ShoppingCarts.SingleOrDefaultAsync(x => x.UserName == command.UserName);
-            if (basket == null)
-            {
-                throw new BasketNotFoundException(command.UserName);
-            }
-
-            dbContext.ShoppingCarts.Remove(basket);
-            await dbContext.SaveChangesAsync();
-
+            await basketRepository.DeleteBasket(command.UserName, cancellationToken);
             return new DeleteBasketResult(true);
         }
     }

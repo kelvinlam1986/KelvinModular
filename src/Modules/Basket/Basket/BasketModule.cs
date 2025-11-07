@@ -1,4 +1,6 @@
-﻿using Shared.Data;
+﻿using Basket.Data.Repository;
+
+using Shared.Data;
 
 namespace Basket
 {
@@ -11,6 +13,7 @@ namespace Basket
             // Api Endpoint services
 
             // Application use case services
+            service.AddScoped<IBasketRepository, BasketRepository>();
 
             // Data - Infrastructure services
             var connectionString = configuration.GetConnectionString("Database");
