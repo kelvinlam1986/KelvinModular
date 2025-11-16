@@ -32,7 +32,7 @@ namespace Basket.Basket.Features.AddItemIntoBasket
                 command.ShoppingCartItem.Price,
                 command.ShoppingCartItem.ProductName);
 
-            await basketRepository.SaveChangesAsync(cancellationToken);
+            await basketRepository.SaveChangesAsync(command.UserName, cancellationToken);
             return new AddItemIntoBasketResult(shoppingCart.Id);
         }
     }
