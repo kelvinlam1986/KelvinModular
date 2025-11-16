@@ -14,6 +14,7 @@ namespace Basket
 
             // Application use case services
             service.AddScoped<IBasketRepository, BasketRepository>();
+            service.Decorate<IBasketRepository, CachedBasketRepository>();
 
             // Data - Infrastructure services
             var connectionString = configuration.GetConnectionString("Database");
