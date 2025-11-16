@@ -1,6 +1,4 @@
-﻿using Basket.Data.Repository;
-
-namespace Basket.Basket.Features.CreateBasket
+﻿namespace Basket.Basket.Features.CreateBasket
 {
     public record CreateBasketCommand(ShoppingCartDto ShoppingCart)
         : ICommand<CreateBasketResult>;

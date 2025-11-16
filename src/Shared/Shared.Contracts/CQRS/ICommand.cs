@@ -1,8 +1,8 @@
 ﻿using MediatR;
 
-namespace Shared.CQRS
+namespace Shared.Contracts.CQRS
 {
-    public interface ICommand :  IRequest<Unit>
+    public interface ICommand : IRequest<Unit>
     {
     }
 

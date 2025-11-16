@@ -1,6 +1,4 @@
-﻿using Basket.Data.Repository;
-
-namespace Basket.Basket.Features.GetBasket
+﻿namespace Basket.Basket.Features.GetBasket
 {
     public record GetBasketQuery(string UserName)
         : IQuery<GetBasketResult>;

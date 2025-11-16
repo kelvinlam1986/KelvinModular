@@ -13,14 +13,13 @@ global using Mapster;
 global using Carter;
 global using MediatR;
 global using Basket.Data;
+global using Basket.Data.Repository;
 global using Basket.Basket.Models;
 global using Basket.Basket.Dtos;
 global using Basket.Basket.Exceptions;
 global using Shared.DDD;
-global using Shared.CQRS;
 global using Shared.Data.Interceptors;
-
-
+global using Shared.Contracts.CQRS;
 
 
 

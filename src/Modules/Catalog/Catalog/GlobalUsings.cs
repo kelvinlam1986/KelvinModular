@@ -9,15 +9,16 @@ global using Mapster;
 global using MediatR;
 global using Carter;
 global using FluentValidation; 
-
 global using Shared.DDD;
-global using Shared.CQRS;
 global using Shared.Pagination;
+global using Shared.Contracts.CQRS;
 global using Catalog.Products.Models;
 global using Catalog.Products.Events;
 global using Catalog.Data;
-global using Catalog.Products.Dtos;
 global using Catalog.Products.Exceptions;
+global using Catalog.Contracts.Products.Dtos;
+global using Catalog.Contracts.Products.Features.GetProductById;
+
 
 
 
